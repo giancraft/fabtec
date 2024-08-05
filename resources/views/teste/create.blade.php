@@ -22,6 +22,7 @@
 
     <div class="d-flex justify-content-center">
         <form action="{{ route('aula4.store') }}" method="POST">
+            @csrf
             <fieldset>
                 <div class="form-group">
                     <label for="nome">Nome:</label>

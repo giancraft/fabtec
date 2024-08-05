@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TesteController;
+use App\Http\Controllers\TesteResController;
 
 Route::get('/', function () {
     return ('gianluca');
@@ -165,3 +166,5 @@ Route::get('/saque/{valor}', [TesteController::class, 'saque']);
 Route::get('/fibonacciController', [TesteController::class, 'fibonacci']);
 Route::get('/operacoes/{num}', [TesteController::class, 'operacoes']);
 Route::get('/tabuada/{valor}', [TesteController::class, 'tabuada']);
+
+Route::resource('/aula4', TesteResController::class);

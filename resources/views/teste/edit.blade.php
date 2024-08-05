@@ -24,6 +24,7 @@
 
     <div class="d-flex justify-content-center">
         <form action="{{ route('aula4.update', $item->id) }}" method="POST">
+            @csrf
             @method('PUT')
             <fieldset>
                 <div class="form-group">

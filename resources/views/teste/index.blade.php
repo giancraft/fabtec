@@ -41,6 +41,7 @@
                 </td>
                 <td>
                     <form action="{{route('aula4.destroy', $item->id)}}" method="post" name="delete">
+                        @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger" name="envia">Deletar</button>
                     </form>
