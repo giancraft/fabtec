@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TesteController;
 use App\Http\Controllers\TesteResController;
+use App\Http\Controllers\AlunoController;
 
 Route::get('/', function () {
     return ('gianluca');
@@ -168,3 +169,4 @@ Route::get('/operacoes/{num}', [TesteController::class, 'operacoes']);
 Route::get('/tabuada/{valor}', [TesteController::class, 'tabuada']);
 
 Route::resource('/aula4', TesteResController::class);
+Route::resource('/alunos', AlunoController::class);

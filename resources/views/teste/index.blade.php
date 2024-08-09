@@ -8,16 +8,16 @@
     <title>Document</title>
 </head>
 <body>
+    <script>
+        function confirmDelete(formName) {
+            if (confirm('Tem certeza que deseja excluir este item?')) {
+                document.forms[formName].submit();
+            }
+        }   
+    </script>
     <h1 class="display-5">Index</h1>
 
-    <ul class="nav nav-tabs" >
-        <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{route('aula4.index')}}">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{route('aula4.create')}}">Cadastrar</a>
-        </li>
-    </ul>
+    @include('teste.menu')
     <br>
 
     <table class="table table-hover" border="1px">
@@ -40,10 +40,10 @@
                     <a href="{{route('aula4.edit', $item->id)}}"><button class="btn btn-dark">Alterar</button></a>
                 </td>
                 <td>
-                    <form action="{{route('aula4.destroy', $item->id)}}" method="post" name="delete">
+                    <form name="{{'form_delete_'.$item->id}}" action="{{route('aula4.destroy', $item->id)}}" method="post" name="delete">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger" name="envia">Deletar</button>
+                        <button type="submit" class="btn btn-danger" onclick="confirmDelete('{{'form_delete_'.$item->id}}')" name="{{'form_delete_'.$item->id}}">Deletar</button>
                     </form>
                 </td>
             </tr>

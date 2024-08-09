@@ -12,7 +12,7 @@
 
     <h1 class="display-5">Info</h1>
 
-    @include('teste.menu')
+    @include('alunos.menu')
     <br>
 
     <table class="table table-hover" border="1px">

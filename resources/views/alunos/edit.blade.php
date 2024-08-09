@@ -12,7 +12,7 @@
     <br>
 
     <div class="d-flex justify-content-center">
-        <form action="{{ route('aula4.update', $item->id) }}" method="POST">
+        <form action="{{ route('alunos.update', $item->id) }}" method="POST">
             @csrf
             @method('PUT')
             <fieldset>
