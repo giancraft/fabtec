@@ -45,7 +45,9 @@ class AlunoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $especif = Aluno::find($id);
+
+        return view('alunos.show', ["especif"=>$especif]);
     }
 
     /**
@@ -53,7 +55,9 @@ class AlunoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $espe = Aluno::find($id);
+
+        return view('alunos.edit', ["item"=>$espe]);
     }
 
     /**
@@ -61,7 +65,14 @@ class AlunoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $aluno = Aluno::find($id);
+
+        $aluno->nome = $request->input('nome');
+        $aluno->email = $request->input('email');
+
+        $aluno->save();
+
+        return redirect()->route('alunos.index');
     }
 
     /**
@@ -69,6 +80,10 @@ class AlunoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $aluno = Aluno::find($id);
+
+        $aluno->delete();
+
+        return redirect()->route('alunos.index');
     }
 }

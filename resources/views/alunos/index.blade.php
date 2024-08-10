@@ -49,6 +49,6 @@
             </tr>
             @endforeach
     @php
-    }
+        }
     @endphp
     </table>
