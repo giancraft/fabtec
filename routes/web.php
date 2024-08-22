@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TesteController;
 use App\Http\Controllers\TesteResController;
 use App\Http\Controllers\AlunoController;
+use App\Http\Controllers\SetorController;
+use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
     return ('gianluca');
@@ -170,3 +174,22 @@ Route::get('/tabuada/{valor}', [TesteController::class, 'tabuada']);
 
 Route::resource('/aula4', TesteResController::class);
 Route::resource('/alunos', AlunoController::class);
+
+// Defina as rotas de recursos com middleware de autenticação
+
+Route::middleware(['web', 'auth'])->group(function () {
+    Route::resource('/setor', SetorController::class);
+    Route::resource('/usuario', UsuarioController::class);
+    Route::resource('/perfil', PerfilController::class);
+});
+
+   /* Route::resource('/setor', SetorController::class);
+    Route::resource('/usuario', UsuarioController::class);
+    Route::resource('/perfil', PerfilController::class);*/
+
+// Defina as rotas de autenticação
+Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('login', [AuthController::class, 'login']);
+Route::get('register', [AuthController::class, 'showRegisterForm'])->name('register');
+Route::post('register', [AuthController::class, 'register']);
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');

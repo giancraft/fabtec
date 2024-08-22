@@ -8,21 +8,17 @@
 <body>
     <h1 class="display-5">Editar</h1>
 
-    @include('alunos.menu')
+    @include('setor.menu')
     <br>
 
     <div class="d-flex justify-content-center">
-        <form action="{{ route('alunos.update', $item->id) }}" method="POST">
+        <form action="{{ route('setor.update', $item->id) }}" method="POST">
             @csrf
             @method('PUT')
             <fieldset>
                 <div class="form-group">
-                    <label for="nome">Nome:</label>
-                    <input type="text" name="nome" id="nome" class="form-control" value="{{ $item->nome}}" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="text" name="email" id="email" class="form-control" value="{{ $item->email}}" required>
+                    <label for="descricao">Descricao:</label>
+                    <input type="text" name="descricao" id="descricao" class="form-control" value="{{ $item->descricao}}" required>
                 </div>
                 <br>
                 <div class="d-flex justify-content-center">

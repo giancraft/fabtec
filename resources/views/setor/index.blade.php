@@ -1,3 +1,5 @@
+@include('mensagem')
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,13 +19,25 @@
     </script>
     <h1 class="display-5">Index</h1>
 
-    @include('alunos.menu')
+    @include('setor.menu')
+    <br>
+
+    <form action="{{ route('usuario.index') }}" method="GET" class="mb-3">
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <input type="text" name="search" class="form-control" placeholder="Pesquisar descricao do setor" value="{{ request('search') }}" style="width: 250px;">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary">Pesquisar</button>
+            </div>
+        </div>
+    </form>
     <br>
 
     <table class="table table-hover" border="1px">
         <thead>
         <tr>
-            <th scope="col">Id</th>  <th scope="col">Nome</th>  <th scope="col">Email</th> <th scope="col">Detalhes</th> <th scope="col">Alterar</th> <th scope="col">Excluir</th>
+            <th scope="col">Id</th>  <th scope="col">Descricao</th> <th scope="col">Detalhes</th> <th scope="col">Alterar</th> <th scope="col">Excluir</th>
         </tr>
         </thead>
         <?php if ($info != null) { ?>
@@ -31,19 +45,18 @@
             
             <tr>
                 <td>{{$item->id}}</td>
-                <td>{{$item->nome}}</td> 
-                <td>{{$item->email}}</td> 
+                <td>{{$item->descricao}}</td> 
                 <td>
-                    <a href="{{route('alunos.show', $item->id)}}"><button class="btn btn-dark">Detalhes</button></a>
+                    <a href="{{route('setor.show', $item->id)}}"><button class="btn btn-dark">Detalhes</button></a>
                 </td>
                 <td>
-                    <a href="{{route('alunos.edit', $item->id)}}"><button class="btn btn-dark">Alterar</button></a>
+                    <a href="{{route('setor.edit', $item->id)}}"><button class="btn btn-dark">Alterar</button></a>
                 </td>
                 <td>
-                    <form name="{{'form_delete_'.$item->id}}" action="{{route('alunos.destroy', $item->id)}}" method="post" name="delete">
+                    <form name="{{'form_delete_'.$item->id}}" action="{{route('setor.destroy', $item->id)}}" method="post" name="delete">
                         @csrf
                         @method('DELETE')
-                        <button type="button" class="btn btn-danger" onclick="confirmDelete('{{'form_delete_'.$item->id}}')" name="{{'form_delete_'.$item->id}}">Deletar</button>
+                        <button type="button" class="btn btn-danger" onclick="confirmDelete('{{'form_delete_'.$item->id}}')">Deletar</button>
                     </form>
                 </td>
             </tr>

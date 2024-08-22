@@ -35,7 +35,10 @@ class AlunoController extends Controller
         $aluno->nome = $request->input('nome');
         $aluno->email = $request->input('email');
 
-        $aluno->save();
+        try {
+            $aluno->save();
+        } catch(\Exception $e){
+        }
 
         return redirect()->route('alunos.index');
     }
@@ -70,7 +73,11 @@ class AlunoController extends Controller
         $aluno->nome = $request->input('nome');
         $aluno->email = $request->input('email');
 
-        $aluno->save();
+        try {
+            $aluno->save();
+        } catch(\Exception $e){
+
+        }
 
         return redirect()->route('alunos.index');
     }
@@ -82,7 +89,10 @@ class AlunoController extends Controller
     {
         $aluno = Aluno::find($id);
 
-        $aluno->delete();
+        try {
+            $aluno->delete();
+        } catch (\Exception $e){
+        }
 
         return redirect()->route('alunos.index');
     }
