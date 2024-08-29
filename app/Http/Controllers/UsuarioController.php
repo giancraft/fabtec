@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Usuario;
 use App\Models\Setor;
 use App\Models\Perfil;
+use App\Models\Usuario_Funcao;
+use App\Models\Funcao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -46,6 +48,7 @@ class UsuarioController extends Controller
     public function create()
     {
         $info = Setor::all();
+
         return view('usuario.create', ["info"=>$info]);
     }
 
@@ -94,7 +97,20 @@ class UsuarioController extends Controller
 
         $info = Setor::all();
 
-        return view('usuario.edit', ["item"=>$espe, "info"=>$info]);
+        $funcao = Funcao::all();
+
+        // Verificar se a solicitação inclui o parâmetro de filtro
+        $filterByDate = request()->query('filterByDate');
+
+        // Obter todas as funções do usuário
+        $usuarioFuncao = Usuario_Funcao::where('usuario_id', $usuario->id)
+            ->when($filterByDate, function ($query) {
+                // Ordena pela data de início mais antiga quando o filtro é aplicado
+                return $query->orderBy('dataInicio', 'asc');
+            })
+            ->get();
+
+        return view('usuario.edit', ["item"=>$espe, "info"=>$info, "funcao"=>$funcao, "usuarioFuncao"=>$usuarioFuncao]);
     }
 
     /**
@@ -130,10 +146,21 @@ class UsuarioController extends Controller
                 return redirect()->route('usuario.index')->with('toast', ['type' => 'warning', 'message' => 'Não é Possível excluir itens com vínculos']);
             } else {
                 return redirect()->route('usuario.index')->with('toast', ['type' => 'danger', 'message' => 'Erro Inesperado ('.$e->getMessage().")"]);
-                echo "Erro ao excluir item: " . $e->getMessage();
             }
         }
 
         return redirect()->route('usuario.index')->with('toast', ['type' => 'success', 'message' => 'Usuario deletado com sucesso.']);
+    }
+
+    public function filterByDate(Request $request, $id)
+    {
+        // Redirecionar para a rota de edição com o parâmetro de filtro
+        return redirect()->route('usuario.edit', ['usuario' => $id, 'filterByDate' => true]);
+    }  
+
+    public function resetOrder($id)
+    {
+        // Redirecionar para a rota de edição sem aplicar o filtro de data
+        return redirect()->route('usuario.edit', ['usuario' => $id]);
     }
 }

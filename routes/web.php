@@ -7,6 +7,8 @@ use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\SetorController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\FuncaoController;
+use App\Http\Controllers\UsuarioFuncaoController;
 use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
@@ -181,6 +183,12 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::resource('/setor', SetorController::class);
     Route::resource('/usuario', UsuarioController::class);
     Route::resource('/perfil', PerfilController::class);
+    Route::resource('/funcao', FuncaoController::class);
+    Route::resource('/usuario_funcao', UsuarioFuncaoController::class);
+    Route::post('/usuario/{usuario}/funcao', [UsuarioFuncaoController::class, 'store'])->name('store');
+    Route::delete('/usuario_funcao/{usuario_id}/{funcao_id}', [UsuarioFuncaoController::class, 'destroy'])->name('destroy');
+    Route::get('/usuario/{id}/filter', [UsuarioController::class, 'filterByDate'])->name('filterByDate');
+    Route::get('/usuario/{id}/reset-order', [UsuarioController::class, 'resetOrder'])->name('resetOrder');
 });
 
    /* Route::resource('/setor', SetorController::class);

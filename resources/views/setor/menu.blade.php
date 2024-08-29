@@ -55,6 +55,9 @@
             <a class="nav-link {{ Request::routeIs('perfil.index') ? 'active' : '' }}" href="{{ route('perfil.index') }}">Perfil</a>
         </li>
         <li class="nav-item">
+            <a class="nav-link {{ Request::routeIs('funcao.index') ? 'active' : '' }}" href="{{ route('funcao.index') }}">Funcao</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link {{ Request::routeIs('setor.create') ? 'active' : '' }}" href="{{ route('setor.create') }}">Cadastrar Novo Setor</a>
         </li>
     </ul>

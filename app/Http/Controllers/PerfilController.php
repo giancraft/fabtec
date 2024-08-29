@@ -103,7 +103,6 @@ class PerfilController extends Controller
                 return redirect()->route('perfil.index')->with('toast', ['type' => 'warning', 'message' => 'Não é Possível excluir itens com vínculos']);
             } else {
                 return redirect()->route('perfil.index')->with('toast', ['type' => 'danger', 'message' => 'Erro Inesperado ('.$e->getMessage().")"]);
-                echo "Erro ao excluir item: " . $e->getMessage();
             }
         }
 

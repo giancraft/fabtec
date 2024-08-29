@@ -97,7 +97,6 @@ class SetorController extends Controller
                 return redirect()->route('setor.index')->with('toast', ['type' => 'warning', 'message' => 'Não é Possível excluir itens com vínculos']);
             } else {
                 return redirect()->route('setor.index')->with('toast', ['type' => 'danger', 'message' => 'Erro Inesperado ('.$e->getMessage().")"]);
-                echo "Erro ao excluir item: " . $e->getMessage();
             }
         }
 

@@ -27,6 +27,11 @@ class Usuario extends Authenticatable
         return $this->hasOne('App\Models\Perfil');
     }
 
+    public function funcoes(){
+        return $this->belongsToMany('App\Models\Funcao', 'usuario__funcaos')
+                    ->withPivot('dataInicio');
+    }
+
     protected static function boot()
     {
         parent::boot();
