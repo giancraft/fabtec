@@ -19,7 +19,7 @@
     </script>
     <h1 class="display-5">Index</h1>
 
-    @include('setor.menu')
+    @include('menu')
     <br>
 
     <form action="{{ route('usuario.index') }}" method="GET" class="mb-3">
@@ -29,6 +29,11 @@
             </div>
             <div class="col-auto">
                 <button type="submit" class="btn btn-primary">Pesquisar</button>
+            </div>
+            <div class="col-auto ms-auto">
+                <a href="{{ route('setor.create') }}">
+                    <button type="button" class="btn btn-success" style="margin-right: 3vw;">Criar Novo Setor</button>
+                </a>
             </div>
         </div>
     </form>

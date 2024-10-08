@@ -8,7 +8,7 @@
 <body>
     <h1 class="display-5">Editar</h1>
 
-    @include('perfil.menu')
+    @include('menu')
     <br>
 
     <div class="d-flex justify-content-center">

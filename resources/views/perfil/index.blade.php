@@ -19,8 +19,16 @@
     </script>
     <h1 class="display-5">Index</h1>
 
-    @include('perfil.menu')
+    @include('menu')
     <br>
+
+    <div class="d-flex justify-content-end mb-3">
+        <a href="{{ route('perfil.create') }}">
+            <button class="btn btn-success" style="margin-right: 3vw">Criar Novo Perfil</button>
+        </a>
+    </div>
+    <br>
+    
 
     <table class="table table-hover" border="1px">
         <thead>

@@ -1,15 +1,7 @@
 @include('mensagem')
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <title>Document</title>
-</head>
-<body>
+@extends('app')
+
     <script>
         function confirmDelete(formName) {
             if (confirm('Tem certeza que deseja excluir este item?')) {
@@ -17,11 +9,10 @@
             }
         }   
     </script>
-    <h1 class="display-5">Index</h1>
 
-    @include('usuario.menu')
+@section('body')
+
     <br>
-
     <form action="{{ route('usuario.index') }}" method="GET" class="mb-3">
         <div class="row g-3 align-items-center">
             <div class="col-auto">
@@ -50,8 +41,15 @@
             <div class="col-auto">
                 <button type="submit" class="btn btn-primary">Aplicar</button>
             </div>
+    
+            <!-- Alinhando o botão "Criar Novo Usuário" à direita -->
+            <div class="col-auto ms-auto">
+                <a href="{{ route('usuario.create') }}">
+                    <button type="button" class="btn btn-success" style="margin-right: 3vw;">Criar Novo Usuário</button>
+                </a>
+            </div>
         </div>
-    </form>
+    </form>    
     <br>
 
     <table class="table table-hover" border="1px">
@@ -87,3 +85,4 @@
         }
     @endphp
     </table>
+@endsection

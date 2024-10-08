@@ -19,7 +19,14 @@
     </script>
     <h1 class="display-5">Index</h1>
 
-    @include('funcao.menu')
+    @include('menu')
+    <br>
+
+    <div class="d-flex justify-content-end mb-3">
+        <a href="{{ route('funcao.create') }}">
+            <button class="btn btn-success" style="margin-right: 3vw">Criar Nova Funcao</button>
+        </a>
+    </div>
     <br>
 
     <table class="table table-hover" border="1px">
